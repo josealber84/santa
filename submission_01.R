@@ -20,7 +20,7 @@ trip.id <- 0
 while(nrow(remaining.gifts) > 0){
   
   trip.ids <- CreateTrip(remaining.gifts)
-  remaining.gifts <- remaining.gifts[!(remaining.gifts[,1] %in% trip.ids), ]
+  nremaining.gifts <- remaining.gifts[!(remaining.gifts[,1] %in% trip.ids), ]
   submission <- rbind(submission, 
                       matrix(data = c(trip.ids, 
                                       rep(trip.id, length(trip.ids))),
@@ -30,7 +30,13 @@ while(nrow(remaining.gifts) > 0){
   
 }
 
-
+# Submission evaluation
+sub <- submission %>% left_join(gifts, by = c("GiftId")) %>% as.matrix()
+print(system.time({  
+  cost <- 0.0
+  cost <- FastSumissionEval(sub)
+  cat(cost, fill = T)
+}))
 
 
 
