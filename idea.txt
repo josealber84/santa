@@ -1,4 +1,0 @@
-IDEA
-
-1. Cojo regalo más gordo
-2. Relleno el trip con regalos cercanos encadenados, es decir, no cercanos al gordo, sino cercanos al último regalo elegido.
